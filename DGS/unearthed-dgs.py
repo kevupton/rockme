@@ -2,7 +2,7 @@
 """
 Created on Sat May 16 10:47:33 2015
 
-@author: Kevin
+@author: Gavin
 """
 
 import DGS
@@ -16,7 +16,7 @@ from matplotlib import pyplot
 
 def process(image_file):
     density = 1 # process every 10 lines
-    res = 1.3 # mm/pixel
+    res = 0.3 # mm/pixel
     doplot = 0 # don't make plots
     #image_folder = 'C:/Users/Gavin/Downloads/'
     #DGS.dgs(image_folder,density,doplot,res)
@@ -30,17 +30,17 @@ def process(image_file):
 start_time = time.time()
  
 # Camera 0 is the integrated web cam on my netbook
-camera_port = 0
+camera_port = 2
 
 camera = cv2.VideoCapture(camera_port)
 
 def get_image():
- retval, im = camera.read()
- return im
+    retval, im = camera.read()
+    return im
 
 filePath = "test.png"
 count = 0
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(2)
 #124.768
 time_taken = time.time()
 while(True):
@@ -61,13 +61,20 @@ while(True):
         cv2.imwrite(filePath, camera_capture)
         time_taken = time.time()
         density = 1 # process every 10 lines
-        res = 1.3 # mm/pixel
-        doplot = 1 # don't make plots
-        mnsz, srt, sk, kurt, pd, xi, yi = DGS.dgs(filePath,density,doplot,res)
-        pyplot.plot(xi,yi)
+        res = 2 # mm/pixelq
+        doplot = 0 # don't make plots
+        mnsz, srt, sk, kurt, pd, scales, d = DGS.dgs(filePath,density,doplot,res)
+        #pyplot.ylim(0,1)
+        pyplot.plot(scales, d)
+        
+        #Mim = mpl.imshow(showim,cmap=mpl.cm.gray)
+        #mpl.plot(implot,'r' )
+        #mpl.axis('tight')        
+        
+        
         pyplot.show()
         #mnsz, srt, sk, kurt, pd = process(filePath)
-        print pd
+        #print pd
         
 
 # When everything done, release the capture

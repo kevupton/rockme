@@ -408,6 +408,7 @@ def dgs(folder, density, doplot, resolution):
          mpl.ylabel('Proportion')
          mpl.xlabel('Size')
          mpl.plot(scales,d,'g-')
+         
 
          (dirName, fileName) = os.path.split(item)
          (fileBaseName, fileExtension)=os.path.splitext(fileName)
@@ -463,7 +464,7 @@ def dgs(folder, density, doplot, resolution):
    f_csv.close()
    
    if isfile==1:
-      return mnsz, srt, sk, kurt, pd, xi, yi
+      return mnsz, srt, sk, kurt, pd, scales,d
 
 # =========================================================
 def get_me(useregion, maxscale, notes, density, mult):
