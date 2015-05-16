@@ -2,7 +2,7 @@
 """
 Created on Sat May 16 10:47:33 2015
 
-@author: Gavin
+@author: Kevin
 """
 
 import DGS
